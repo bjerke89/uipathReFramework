@@ -1,15 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="UploadTransactionData"
- xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
- xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
- xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
- xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
- xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
- xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
- xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
- xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
- xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
- xmlns:ui="http://schemas.uipath.com/workflow/activities"
- xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="UploadTransactionData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="id_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="od_TransactionDataCount" Type="OutArgument(x:Int32)" />
@@ -18,6 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>590,1369</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>UploadTransactionData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -75,18 +65,29 @@
       <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Descritpion: Upload data that you want to process. This could be tranactional data from spreadsheets, API, database or Orchestrator Queues&#xA;&#xA;If there is not data to upload the process will run to the End Process state &#xA;&#xA;The example below involves reading from a spreadsheet and uploading each row to Orchestrator Queue." DisplayName="UploadTransactionData" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Descritpion: Upload data that you want to process. This could be tranactional data from spreadsheets, API, database or Orchestrator Queues&#xA;&#xA;If there is not data to upload the process will run to the End Process state &#xA;&#xA;The example below involves reading from a spreadsheet and uploading each row to Orchestrator Queue." DisplayName="UploadTransactionData" sap:VirtualizedContainerService.HintSize="570,1309" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="lt_TransactionData" />
     </Sequence.Variables>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" Visible="False" WorkbookPath="[id_Config(&quot;InputDataFolderPath&quot;).ToString + id_Config(&quot;InputDataFileName&quot;).ToString]">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap:VirtualizedContainerService.HintSize="528,260" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" Visible="False" WorkbookPath="[id_Config(&quot;InputDataFolderPath&quot;).ToString + id_Config(&quot;InputDataFileName&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_2">
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[lt_TransactionData]" DisplayName="Read Range from Excel sheet" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,151" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[lt_TransactionData]" DisplayName="Read Range from Excel sheet" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
               <ui:ExcelReadRange.Range>
                 <InArgument x:TypeArguments="x:String">
                   <Literal x:TypeArguments="x:String" Value="" />
@@ -97,7 +98,7 @@
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
     </ui:ExcelApplicationScope>
-    <Assign DisplayName="Check no. of rows in TransactionDataTable" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Check no. of rows in TransactionDataTable" sap:VirtualizedContainerService.HintSize="528,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[od_TransactionDataCount]</OutArgument>
       </Assign.To>
@@ -105,14 +106,20 @@
         <InArgument x:TypeArguments="x:Int32">[lt_TransactionData.Rows.Count]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[lt_TransactionData]" DisplayName="For each row " sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[lt_TransactionData]" DisplayName="For each row " sap:VirtualizedContainerService.HintSize="528,469" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
           </ActivityAction.Argument>
-          <Sequence sap2010:Annotation.AnnotationText="For each row in the Transaction datatable the loop will upload to Orchestrator Queue. You can add transaction info by adding column data to the ItemInformation collection. &#xA;&#xA;If the transaction data has unique values ex. a invoice number you should also refer to this in the Reference property. This will make it easier to see  as it shows up on the Transaction List in Orchestrator. " DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_3">
-            <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add queue item" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[id_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[row(1).ToString]">
+          <Sequence sap2010:Annotation.AnnotationText="For each row in the Transaction datatable the loop will upload to Orchestrator Queue. You can add transaction info by adding column data to the ItemInformation collection. &#xA;&#xA;If the transaction data has unique values ex. a invoice number you should also refer to this in the Reference property. This will make it easier to see  as it shows up on the Transaction List in Orchestrator. " DisplayName="Body" sap:VirtualizedContainerService.HintSize="242,321" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add queue item" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[id_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[row(1).ToString]">
               <ui:AddQueueItem.ItemInformation>
                 <InArgument x:TypeArguments="x:String" x:Key="Currency">[row(0).ToString]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Amount">[row(1).ToString]</InArgument>
@@ -122,7 +129,7 @@
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <Assign DisplayName="Assign that transactions are uploaded" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign DisplayName="Assign that transactions are uploaded" sap:VirtualizedContainerService.HintSize="528,60" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Boolean">[od_TransactionsUploaded]</OutArgument>
       </Assign.To>
@@ -130,42 +137,6 @@
         <InArgument x:TypeArguments="x:Boolean">True</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:LogMessage DisplayName="Log message" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[id_Config(&quot;LogMessage_UploadTransactionData&quot;).ToString + od_transactionDataCount.ToString]" />
-    <sads:DebugSymbol.Symbol>d2tDOlxHSVRcUlBBXFNvcHJhUmVGcmFtZXdvcmtcU29wcmEgU3RlcmlhIFVpUGF0aCAtIFJlRnJhbWVXb3JrIC0gTWFzdGVyXEZyYW1ld29ya1xVcGxvYWRUcmFuc2FjdGlvbkRhdGEueGFtbBhOA4cBDgIBAVIFYyACARhkBWsOAgEUbAV8FQIBCn0FhAEOAgEGhQEFhQHcAQIBAlKwAVKbAgIBH1gLYBYCARlpL2lOAgEXZjBmSQIBFWw2bEwCARJyC3kWAgELggExggE1AgEJfzJ/SwIBB4UBcoUB2QECAQNZDV8hAgEacw14HwIBDFk8WVICAR1cE1xCAgEcWboBWcIBAgEbc/8Bc5ICAgERc7sBc/QBAgEPdUl1WgIBDnZHdlgCAQ0=</sads:DebugSymbol.Symbol>
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="528,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[id_Config(&quot;LogMessage_UploadTransactionData&quot;).ToString + od_transactionDataCount.ToString]" />
   </Sequence>
-  <sap2010:WorkflowViewState.ViewStateManager>
-    <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="ExcelReadRange_1" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="336,183">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="510,292" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="510,60" />
-      <sap2010:ViewStateData Id="AddQueueItem_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="222,368">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="510,516" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="510,60" />
-      <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="508,91" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="532,1420">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="UploadTransactionData_1" sap:VirtualizedContainerService.HintSize="572,1500" />
-    </sap2010:ViewStateManager>
-  </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
